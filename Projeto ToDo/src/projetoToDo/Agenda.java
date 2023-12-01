@@ -2,11 +2,9 @@ package projetoToDo;
 
 public class Agenda {
 	
-	String data;
-	int index;
-	Tarefas[] tarefas;
-	
-	
+	private String data;
+	private int index;
+	private Tarefas[] tarefas;
 	
 	public int getIndex() {
 		return index;
@@ -42,14 +40,14 @@ public class Agenda {
 		System.out.println("Dia: " + data);
 	    for (int i = 0; i < tam; i++) {
 	        if (tarefas[i] != null) {
-	            System.out.println((i+1) + "a tarefa -> " + tarefas[i].getAtividade());
+	        	System.out.println(tarefas[i].getAtividade());
 	            }
 	        else {
 	        	aux2++;
 	        	if(aux2 == tam) {
 	            	System.out.println("###Agenda vazia porque voce excluiu todas as tarefas###");
 	            	}
-	        }
+	        	}
 	    	}
 		}
 
@@ -61,7 +59,7 @@ public class Agenda {
 	}
 	
 	public void excluir(int excluir, int tam, Tarefas[] tarefa) {
-		if(excluir-1 >= 0 && excluir-1 <= tam) {
+		if(excluir-1 >= 0 && excluir-1 < tam) {
 			tarefas[excluir-1] = null;
 			System.out.println("###Excluido com sucesso###\n");
 		}else{
@@ -70,20 +68,17 @@ public class Agenda {
 	}
 	
 		public void check(int checar, int tam, Tarefas[] tarefa) {
-			if(checar-1 >= 0 && checar-1 <= tam) {
-			for(int i = 0; i<tam; i++) {
+			if(checar-1 >= 0 && checar-1 < tam) {
 				if(tarefa[checar-1] != null) {
-		        tarefas[checar - 1].setAtividade("Concluido");
-					}
+					tarefas[checar-1].setAtividade("( V ) " + tarefas[checar - 1].getAtividade());
+					System.out.println("\nA tarefa foi concluída!!!!\n");
 				}
-			System.out.println("...................................");
 			if(tarefa[checar-1] == null) {
 				System.out.println("Não tem como marcar como concluido uma tarefa que voce excluiu");
 				}
-			}
-			else {
+			
+			}else {
 				System.out.println("Tarefa não encontrada");
 				}
-			}
 		}
-		
+}
